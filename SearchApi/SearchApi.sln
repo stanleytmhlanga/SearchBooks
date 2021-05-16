@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchApi", "SearchApi\SearchApi.csproj", "{B526834E-6269-4308-BDFC-7C45B801D461}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{E141E74D-8AC1-4E5E-A931-0BCF44FAC192}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B526834E-6269-4308-BDFC-7C45B801D461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B526834E-6269-4308-BDFC-7C45B801D461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B526834E-6269-4308-BDFC-7C45B801D461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B526834E-6269-4308-BDFC-7C45B801D461}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C4FAA88-A6D4-46C6-950B-9F96F33B535D}
+	EndGlobalSection
+EndGlobal
