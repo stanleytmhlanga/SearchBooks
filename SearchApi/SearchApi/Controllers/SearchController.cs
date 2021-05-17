@@ -1,88 +1,42 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SearchApi.Intefaces;
+using SearchApi.Model;
+using SearchApi.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Http.Description;
 
 namespace SearchApi.Controllers
 {
     [Route("api/[controller]")]
     public class SearchController : Controller
     {
-        // GET: SearchController
-        public ActionResult Index()
+        private IBook repository;
+        public SearchController(IBook bookRepository)
         {
-            return View();
+            this.repository = bookRepository;
         }
-
-        // GET: SearchController/Details/5
-        public ActionResult Details(int id)
+        // GET: api/SearchBookByTitle
+        [ResponseType(typeof(IEnumerable<Book>))]
+        [Route("SearchBookByTitle")]
+        [HttpGet]
+        public async Task<List<Book>> SearchBookByTitle(string title)
         {
-            return View();
-        }
-
-        // GET: SearchController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SearchController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            var responseFromSwevice = await repository.SearchBookByTitle(title);
+            if (responseFromSwevice.Count > 0)
             {
-                return RedirectToAction(nameof(Index));
+                return responseFromSwevice;
             }
-            catch
+            else
             {
-                return View();
-            }
+                return null;
+            }  
         }
-
-        // GET: SearchController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: SearchController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: SearchController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: SearchController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+          
     }
 }

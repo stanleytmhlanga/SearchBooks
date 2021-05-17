@@ -6,6 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RestSharp.Deserializers;
+using RestSharp.Serializers;
+using SearchApi.Intefaces;
+using SearchApi.Model;
+using SearchApi.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +30,7 @@ namespace SearchApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IBook, BookRepository>();
             services.AddControllers();
         }
 
@@ -35,6 +41,9 @@ namespace SearchApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(x => x.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
@@ -44,8 +53,13 @@ namespace SearchApi
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Search}/{action=SearchBookByTitle}/{title?}");
                 endpoints.MapControllers();
             });
+        
+
         }
     }
 }
